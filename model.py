@@ -339,6 +339,7 @@ class BiLSTM_CRF(nn.Module):
                         nn.Conv2d(in_channels=hidden_dim * 2, out_channels=hidden_dim * 2, kernel_size=(3, 3),
                                   padding=(3, 3), dilation=3),
                         nn.MaxPool2d((1, self.combined_embed_dim // 4)))
+
             for layer in self.word_cnn3:
                 if type(layer) == nn.Conv2d:
                     init_cnn(layer)

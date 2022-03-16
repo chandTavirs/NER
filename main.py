@@ -6,7 +6,7 @@ import torch
 from data import *
 from model import BiLSTM_CRF
 
-from train_and_eval import train
+from train_and_eval import train, demo
 
 def count_parameters(model):
     return sum(p.numel() for p in model.parameters() if p.requires_grad)
@@ -114,6 +114,7 @@ if __name__ == '__main__':
             lf.write('Char mode:: {}, word mode:: {}, CNN Layers:: {}, Dilation:: {}, CRF:: {} \n'.
                      format(parameters['char_mode'], parameters['word_mode'], parameters['num_word_cnn_layers'],
                             parameters['dilation'], parameters['crf']))
+            lf.write('Model parameters:: '+str(count_parameters(model))+'\n')
             lf.write('Losses:: '+str(losses)+'\n')
             lf.write('all_F:: '+str(all_F)+'\n')
             lf.write('Time taken:: {}\n'.format(time_taken))
@@ -126,7 +127,9 @@ if __name__ == '__main__':
 
     else:
         model.load_state_dict(torch.load(model_name))
-        print(count_parameters(model))
+        model_testing_sentences = ['Ron went to the USA', 'Germany defeated Argentina in the 2014 FIFA World Cup final']
+
+        demo(model, parameters, model_testing_sentences, word_to_id, char_to_id, tag_to_id)
 
 
 
