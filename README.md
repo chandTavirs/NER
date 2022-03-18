@@ -55,3 +55,8 @@ To use the model trained by the above command for a demo on a set of example sen
 ```commandline
 python main.py --load_from_mapping_file --lower --zeros --word_bidirect --all_emb --crf --char_mode="CNN" --word_mode="CNN" --num_word_cnn_layers=3 --dilation --use_gpu --name='CNN_CNN3_DILATED' --eval_only
 ```
+
+#Link to repo
+```
+https://github.com/chandTavirs/NER
+```
